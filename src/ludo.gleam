@@ -1,11 +1,10 @@
 import gleam/erlang/process
 import gleam/otp/static_supervisor as sup
-import ludo/web
 
 pub fn main() {
   let _supervisor =
     sup.new(sup.OneForOne)
-    |> sup.add(sup.worker_child("web", web.start))
+    |> sup.add(sup.worker_child("web", phoenix_endpoint))
     |> sup.start_link
 
   observer()
@@ -17,3 +16,6 @@ pub fn main() {
 
 @external(erlang, "observer", "start")
 fn observer() -> x
+
+@external(erlang, "Elixir.Ludo.Web.Supervisor", "start")
+fn phoenix_endpoint() -> phoenix_endpoint
