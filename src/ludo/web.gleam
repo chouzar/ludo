@@ -46,7 +46,7 @@ fn router(request) {
       )
     }
 
-    Request(path: "/games/tictactoe/ws", ..) -> {
+    Request(path: "/tictactoe/ws", ..) -> {
       mist.websocket(
         request: request,
         on_init: fn(_websocket) {
@@ -59,11 +59,11 @@ fn router(request) {
       )
     }
 
-    Request(path: "/games/tictactoe", ..) -> {
+    Request(path: "/", ..) -> {
       response.new(200)
       |> response.prepend_header("content-type", "text/html")
       |> response.set_body(
-        server_component("/games/tictactoe/ws")
+        server_component("/tictactoe/ws")
         |> element.to_document_string_builder
         |> bytes_tree.from_string_tree
         |> mist.Bytes,
