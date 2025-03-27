@@ -6,9 +6,9 @@ defmodule Ludo.Web.Router do
     plug(:accepts, ["html"])
   end
 
-  scope "/games", Ludo.Web do
+  scope "/", Ludo.Web do
     pipe_through(:browser)
 
-    live("/tictactoe", TicTacToeLive, :index)
+    live("/", TicTacToeLive, :index)
   end
 end

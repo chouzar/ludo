@@ -15,7 +15,7 @@ pub fn main() {
 }
 
 @external(erlang, "observer", "start")
-fn observer() -> x
+fn observer() -> ok
 
 @external(erlang, "Elixir.Ludo.Web.Supervisor", "start")
 fn phoenix_endpoint() -> phoenix_endpoint
